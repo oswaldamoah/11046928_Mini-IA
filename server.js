@@ -55,6 +55,27 @@ app.post('/pv', async(req, res) => {
  })
 
 
+// Doctor getting all Patient IDs:
+app.get('/pv/', async (req, res) => {
+    try {
+        const allPatientIds = await PatientVitals.find().distinct('_id');
+        res.status(200).json(allPatientIds);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+// Doctor getting a single Patient's Details:
+app.get('/pv/:id', async(req, res) => {
+    try {
+        const {id} = req.params;
+        const pv = await PatientVitals.findById(id)
+        res.status(200).json(pv);
+    }
+    catch (error) {
+        res.status(500).json({message: error.message})
+    }
+})
 
 
 
@@ -66,7 +87,7 @@ app.post('/pv', async(req, res) => {
 
 /// Linking node to MongoDB
 mongoose.
-connect('mongodb+srv://admin:1234admin@ofreezyapi.alrdfbb.mongodb.net/Node-API?retryWrites=true&w=majority')
+connect('mongodb+srv://admin:1234admin@ofreezyapi.alrdfbb.mongodb.net/IA-Mini?retryWrites=true&w=majority')
 .then(() => {
     console.log('connected to MongoDB')
     // Using the app variable to listen to (declare) our port)
