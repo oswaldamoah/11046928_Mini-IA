@@ -92,7 +92,7 @@ connect('mongodb+srv://admin:1234admin@ofreezyapi.alrdfbb.mongodb.net/IA-Mini?re
     console.log('connected to MongoDB')
     // Using the app variable to listen to (declare) our port)
     app.listen(3000, ()=> {
-    console.log("Node API is running on port "+v)
+    console.log("Node API is running on port 3000")
 });
 }).catch((error) => {
     console.log(error)
